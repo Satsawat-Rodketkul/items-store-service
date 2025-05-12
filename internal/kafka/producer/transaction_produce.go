@@ -14,7 +14,7 @@ func ProduceMessageTransaction(message models.TransactionMessage) error {
 	topic := config.GetValue("KAFKA_TOPIC")
 	value, err := json.Marshal(message)
 	if err != nil {
-		log.Fatal(err)
+		log.Fatal("Error marshal message")
 		return err
 	}
 
@@ -25,7 +25,7 @@ func ProduceMessageTransaction(message models.TransactionMessage) error {
 
 	partition, offset, err := kafka.Producer.SendMessage(&msg)
 	if err != nil {
-		log.Fatal(err)
+		log.Fatal("Error produce message")
 		return err
 	}
 

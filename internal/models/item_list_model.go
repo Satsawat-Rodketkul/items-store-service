@@ -1,10 +1,10 @@
 package models
 
-type ItemsResponse struct {
+type ItemListResponse struct {
 	Id          int     `json:"id"`
 	Title       string  `json:"title"`
 	Price       float64 `json:"price"`
 	Description string  `json:"description"`
-	Category    string  `json:"category"`
+	Categoty    string  `json:"categoty"`
 	Image       string  `json:"image"`
 }

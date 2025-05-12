@@ -2,25 +2,25 @@ package service
 
 import (
 	"encoding/json"
-	"items-store-service/internal/client/models"
 	"items-store-service/internal/config"
+	"items-store-service/internal/models"
 	"log"
 	"net/http"
 )
 
-func GetAllItems() ([]models.ItemsResponse, error) {
+func GetAllItems() (*[]models.ItemListResponse, error) {
 	url := config.GetValue("URL")
 	resp, err := http.Get(url)
 	if err != nil {
-		log.Fatal(err)
+		log.Fatal("Error get item from webclient")
 		return nil, err
 	}
 	defer resp.Body.Close()
 
-	response := []models.ItemsResponse{}
+	response := &[]models.ItemListResponse{}
 	err = json.NewDecoder(resp.Body).Decode(&response)
 	if err != nil {
-		log.Fatal(err)
+		log.Fatal("Error map response from webclient")
 		return nil, err
 	}
 	return response, nil
